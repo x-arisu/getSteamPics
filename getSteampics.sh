@@ -1,8 +1,25 @@
 #!/bin/bash
+
+if ["$1" == ""]
+then
+	echo "Please provide path to screenshots html file"
+	exit
+fi
 SteamScreenShots=$(cat "$1")
+
+### Config ###
+SteamLoginSecurePath="./steamLoginSecure.txt"
 Debug=false
 Agent="Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0"
+##############
 
+
+cookies=""
+if [[ $(wc -c $SteamLoginSecurePath) > 29 ]]
+then
+	cookies="-b steamLoginSecure=$(cat $SteamLoginSecurePath)"
+fi
+echo "$cookies"
 function dateformat () {
 	Months=("Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec")
 	screenMonth=0
@@ -37,7 +54,7 @@ function dateformat () {
 }
 while read -r item
 do
-	ScreenshotPage="$(curl -s -A "$Agent" $item)"
+	ScreenshotPage="$(curl -s -A "$Agent" $cookies $item)"
 	ItemID="$(echo "$item" | sed -e "s/.*?id=//" )"
 	Image="$(echo "$ScreenshotPage" | grep \"ActualMedia\" | sed -e "s/.*href=\"//" -e "s/..target.*//")"
 	Date="$(echo "$ScreenshotPage" | grep detailsStatRight | grep @ | sed -e "s/.*Right\">//" -e "s/<\/div>//")"
