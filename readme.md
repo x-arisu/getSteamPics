@@ -14,7 +14,7 @@ Then save the page in the same directory as the script.
 
 Then just run:
 
-./getSteampics.sh "/home/<username>/pathtosteampics/Steam Community SteamName Screenshots.html"
+./getSteampics.sh "/home/username/pathtosteampics/Steam Community SteamName Screenshots.html"
 
 Then it should just start downloading.
 
@@ -29,12 +29,14 @@ There you will find stored cookies for steamcommunity.com
 Just copy the steamLoginSecure token and paste it into the steamLoginSecure text file.
 You will have to remove any extra stuff that might be there after pasting it
 
+```
 After pasting:
 steamLoginSecure:"<your token here>"
-
+```
+```
 After clean up:
 <your token here>
-
+```
 
 This script depends on curl and bc
 
