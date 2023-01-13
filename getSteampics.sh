@@ -19,7 +19,7 @@ if [[ $(wc -c $SteamLoginSecurePath) > 29 ]]
 then
 	cookies="-b steamLoginSecure=$(cat $SteamLoginSecurePath)"
 fi
-echo "$cookies"
+
 function dateformat () {
 	Months=("Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec")
 	screenMonth=0
