@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ["$1" == ""]
+if [ "$1" == "" ]
 then
 	echo "Please provide path to screenshots html file"
 	exit
